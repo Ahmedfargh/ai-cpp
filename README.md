@@ -52,7 +52,7 @@ Every generated blueprint maps sequential actions to dedicated operational divis
 
 ```
 null-project/
-├── include/
+├── include/                         # Header declarations (interfaces & class definitions)
 │   ├── core/
 │   │   ├── LlamaModel.hpp           # RAII wrapper around llama_model & vocabulary
 │   │   ├── LlamaContext.hpp         # RAII wrapper around llama_context & KV cache decoding
@@ -71,6 +71,22 @@ null-project/
 │   │   └── ConfigurableSampler.hpp  # Repetition penalties, Top-K/Top-P, temperature
 │   └── engine/
 │       └── ChatEngine.hpp           # Lifecycle coordinator with string-aware JSON tracking
+├── src/                             # Class implementations (.cpp translation units)
+│   ├── core/
+│   │   ├── LlamaModel.cpp
+│   │   ├── LlamaContext.cpp
+│   │   └── PlatformDetector.cpp
+│   ├── formatters/
+│   │   └── QwenChatMLFormatter.cpp
+│   ├── loaders/
+│   │   ├── FilePromptLoader.cpp
+│   │   ├── StaticPromptLoader.cpp
+│   │   └── SystemAwarePromptLoader.cpp
+│   ├── samplers/
+│   │   ├── GreedySampler.cpp
+│   │   └── ConfigurableSampler.cpp
+│   └── engine/
+│       └── ChatEngine.cpp
 ├── models/
 │   └── commanders/                  # Quantized GGUF models (e.g. Qwen2.5 1.5B Instruct)
 ├── ggml/                            # GGML submodule (tensor library)
