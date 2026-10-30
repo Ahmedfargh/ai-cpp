@@ -1,0 +1,10 @@
+CompileFlags:
+  Add:
+    - "-I/home/ahmed/null project/llama.cpp/include"
+    - "-I/home/ahmed/null project/llama.cpp/ggml/include"
+    - "-I/home/ahmed/null project/ggml/include"
+    - "-I/home/ahmed/null project/ggml/ggml/include"
+    - "-I/home/ahmed/null project/include"
+    - "-std=c++17"
+    - "-mavx2"
+    - "-mfma"

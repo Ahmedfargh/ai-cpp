@@ -1,0 +1,27 @@
+# Compiled Binaries & Build Artifacts
+qwen_chat
+qwen_runner
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+build/
+
+# GGUF LLM Model Weights (Large Files)
+models/**/*.gguf
+*.gguf
+
+# IDE & Editor Configurations
+.cache/
+.clangd/
+compile_commands.json
+.vscode/*
+!.vscode/c_cpp_properties.json
+*.swp
+*~
+
+# Draw.io Backups & Temp files
+.$*
+*.bkp
+*.tmp

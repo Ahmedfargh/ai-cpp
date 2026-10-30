@@ -1,0 +1,112 @@
+<mxfile host="Electron" agent="Antigravity C++ Memory Architecture">
+  <diagram id="TheNullLRUVectorRAMManagementBW" name="THE NULL - LRU Model Vector &amp; Cleaner Thread Engine">
+    <mxGraphModel dx="982" dy="614" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1360" pageHeight="960" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;align=center;" value="&lt;b style=&#39;font-size:18px; color:#000000;&#39;&gt;THE NULL — LRU MODEL VECTOR &amp;amp; CLEANER THREAD ENGINE&lt;/b&gt;&lt;br/&gt;&lt;span style=&#39;color:#333333; font-size:11px;&#39;&gt;Active Model Tracking List + Dedicated Background Cleaner Thread for Automatic RAM Eviction&lt;/span&gt;" vertex="1">
+          <mxGeometry height="55" width="1280" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="zone_ram_budget" parent="1" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;startSize=24;rounded=0;" value="&lt;b style=&#39;color:#000000;&#39;&gt;[PHYSICAL RAM PARTITIONING — 16.0 GB TOTAL CAPACITY]&lt;/b&gt;" vertex="1">
+          <mxGeometry height="85" width="1280" x="40" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="bar_os" parent="zone_ram_budget" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e5e5e5;strokeColor=#000000;strokeWidth=1;fontColor=#000000;fontSize=10;" value="&lt;b&gt;OS &amp;amp; SYSTEM BASE&lt;/b&gt;&lt;br/&gt;~6.5 GB Used" vertex="1">
+          <mxGeometry height="42" width="240" x="15" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bar_commander" parent="zone_ram_budget" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;strokeWidth=1.5;fontColor=#ffffff;fontSize=10;" value="&lt;b&gt;COMMANDER LLM ARENA&lt;/b&gt;&lt;br/&gt;~2.2 GB Pinned Memory" vertex="1">
+          <mxGeometry height="42" width="220" x="265" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bar_arena" parent="zone_ram_budget" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;fontColor=#000000;fontSize=10;" value="&lt;b&gt;DYNAMIC LRU MODEL ARENA&lt;/b&gt;&lt;br/&gt;~2.5 GB Governed by LRU Vector" vertex="1">
+          <mxGeometry height="42" width="260" x="495" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bar_army" parent="zone_ram_budget" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#000000;strokeWidth=1;fontColor=#000000;fontSize=10;" value="&lt;b&gt;1,000 AGENTS METADATA&lt;/b&gt;&lt;br/&gt;~15 MB (Zero inactive weights)" vertex="1">
+          <mxGeometry height="42" width="200" x="765" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bar_safety" parent="zone_ram_budget" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;dashed=1;fontColor=#000000;fontSize=10;" value="&lt;b&gt;OOM SAFETY BUFFER&lt;/b&gt;&lt;br/&gt;~4.5 GB Free Headroom" vertex="1">
+          <mxGeometry height="42" width="290" x="975" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zone_lru_vector" parent="1" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;fontColor=#000000;startSize=26;rounded=0;" value="&lt;b style=&#39;color:#000000;&#39;&gt;[1. ACTIVE MODELS TRACKING LIST / VECTOR]&lt;/b&gt;" vertex="1">
+          <mxGeometry height="745" width="560" x="40" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="node_vec_desc" parent="zone_lru_vector" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#000000;strokeWidth=1;fontColor=#000000;align=left;spacingLeft=10;" value="&lt;b&gt;Thread-Safe Active Models Registry&lt;/b&gt;&lt;br/&gt;&lt;span style=&#39;font-size:10px;&#39;&gt;Tracks active models in memory. Refreshes activity timestamp on every inference call.&lt;/span&gt;" vertex="1">
+          <mxGeometry height="45" width="530" x="15" y="35" as="geometry" />
+        </mxCell>
+        <mxCell id="slot_0" parent="zone_lru_vector" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;strokeWidth=2;fontColor=#ffffff;align=left;spacingLeft=10;" value="&lt;b&gt;[SLOT 0] — DIV 01: YOLOv8x High-Res Detector&lt;/b&gt;&lt;br/&gt;&lt;span style=&#39;font-size:10px;&#39;&gt;• Model ID: &lt;b&gt;YOLO_V8X_ONNX&lt;/b&gt; &amp;nbsp;|&amp;nbsp; RAM: &lt;b&gt;280 MB&lt;/b&gt;&lt;br/&gt;• State: &lt;b&gt;BUSY&lt;/b&gt; (Active inference running on CPU SIMD)&lt;br/&gt;• Cleaner Policy: &lt;b&gt;PROTECTED&lt;/b&gt; (Never evict while processing)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="65" width="530" x="15" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="slot_1" parent="zone_lru_vector" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;align=left;spacingLeft=10;" value="&lt;b&gt;[SLOT 1] — DIV 01: YOLOv8n Fast Vision Detector&lt;/b&gt;&lt;br/&gt;&lt;span style=&#39;font-size:10px;&#39;&gt;• Model ID: &lt;b&gt;YOLO_V8N_ONNX&lt;/b&gt; &amp;nbsp;|&amp;nbsp; RAM: &lt;b&gt;45 MB&lt;/b&gt;&lt;br/&gt;• State: &lt;b&gt;IDLE (Idle 3.1s &amp;lt; 10s TTL)&lt;/b&gt;&lt;br/&gt;• Cleaner Policy: &lt;b&gt;KEEP WARM&lt;/b&gt; (Ready for immediate reuse)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="65" width="530" x="15" y="161" as="geometry" />
+        </mxCell>
+        <mxCell id="slot_2" parent="zone_lru_vector" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#000000;strokeWidth=2;fontColor=#000000;align=left;spacingLeft=10;" value="&lt;b&gt;[SLOT 2] — DIV 07: Whisper Speech Model (Base)&lt;/b&gt;&lt;br/&gt;&lt;span style=&#39;font-size:10px;&#39;&gt;• Model ID: &lt;b&gt;WHISPER_BASE_ONNX&lt;/b&gt; &amp;nbsp;|&amp;nbsp; RAM: &lt;b&gt;140 MB&lt;/b&gt;&lt;br/&gt;• State: &lt;b&gt;EXPIRED (Idle 14.8s &amp;gt; 10s TTL)&lt;/b&gt;&lt;br/&gt;• Cleaner Policy: &lt;b&gt;EVICT NOW&lt;/b&gt; (Free 140 MB RAM back to system)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="65" width="530" x="15" y="234" as="geometry" />
+        </mxCell>
+        <mxCell id="slot_3" parent="zone_lru_vector" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#000000;strokeWidth=2;fontColor=#000000;align=left;spacingLeft=10;" value="&lt;b&gt;[SLOT 3] — DIV 02: Compiler Sandbox Buffer&lt;/b&gt;&lt;br/&gt;&lt;span style=&#39;font-size:10px;&#39;&gt;• Model ID: &lt;b&gt;COMPILER_FORK_SANDBOX&lt;/b&gt; &amp;nbsp;|&amp;nbsp; RAM: &lt;b&gt;32 MB&lt;/b&gt;&lt;br/&gt;• State: &lt;b&gt;EXPIRED (Idle 25.0s &amp;gt; 10s TTL)&lt;/b&gt;&lt;br/&gt;• Cleaner Policy: &lt;b&gt;EVICT NOW&lt;/b&gt; (Terminate process &amp;amp; free 32 MB)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="65" width="530" x="15" y="307" as="geometry" />
+        </mxCell>
+        <mxCell id="node_vec_post" parent="zone_lru_vector" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;align=left;spacingLeft=10;" value="&lt;b&gt;Automatic Vector Compacting&lt;/b&gt;&lt;br/&gt;&lt;span style=&#39;font-size:10px;&#39;&gt;Evicted models are removed from the tracking list. Active slots shrink from 4 to 2, resetting idle agent pointers to null.&lt;/span&gt;" vertex="1">
+          <mxGeometry height="45" width="530" x="15" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="node_schema" parent="zone_lru_vector" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;align=left;spacingLeft=12;" value="&lt;b style=&#39;font-size:11px;&#39;&gt;MODEL ENTRY SCHEMA (DATA ATTRIBUTES)&lt;/b&gt;&lt;br/&gt;&lt;div style=&#39;font-size:10px; line-height:1.6; margin-top:4px;&#39;&gt;• &lt;b&gt;Model Identifier:&lt;/b&gt; Unique key (e.g. YOLO, Whisper, Code Runner)&lt;br/&gt;• &lt;b&gt;Agent Reference:&lt;/b&gt; Direct pointer to executing division agent&lt;br/&gt;• &lt;b&gt;Allocated Bytes:&lt;/b&gt; Exact memory footprint tracked in arena&lt;br/&gt;• &lt;b&gt;Last Used Timestamp:&lt;/b&gt; High-resolution monotonic clock value&lt;br/&gt;• &lt;b&gt;Execution State:&lt;/b&gt; Busy / Active vs Idle / Waiting&lt;br/&gt;• &lt;b&gt;Max Idle TTL:&lt;/b&gt; Configurable eviction timeout (Default: 10s)&lt;br/&gt;• &lt;b&gt;Eviction Flag:&lt;/b&gt; Marked true when ready for list compaction&lt;/div&gt;" vertex="1">
+          <mxGeometry height="155" width="530" x="15" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="node_badges" parent="zone_lru_vector" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;align=left;spacingLeft=12;" value="&lt;b style=&#39;font-size:11px;&#39;&gt;SUMMARY OF ACTIVE RAM DYNAMICS&lt;/b&gt;&lt;br/&gt;&lt;span style=&#39;font-size:10px;&#39;&gt;• Peak In-Use Model RAM: &lt;b&gt;497 MB&lt;/b&gt; (Well below 2.5 GB Arena Cap)&lt;br/&gt;• Post-Eviction Model RAM: &lt;b&gt;325 MB&lt;/b&gt; (Reclaimed 172 MB immediately)&lt;br/&gt;• Eviction Latency: &lt;b&gt;&amp;lt; 1 ms&lt;/b&gt; per model via direct memory release&lt;/span&gt;" vertex="1">
+          <mxGeometry height="75" width="530" x="15" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="zone_reaper" parent="1" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;fontColor=#000000;startSize=26;rounded=0;" value="&lt;b style=&#39;color:#000000;&#39;&gt;[2. BACKGROUND CLEANER / REAPER THREAD]&lt;/b&gt;" vertex="1">
+          <mxGeometry height="745" width="560" x="760" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="node_thread_control" parent="zone_reaper" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;strokeWidth=2;fontColor=#ffffff;align=left;spacingLeft=10;" value="&lt;b&gt;Dedicated Background Cleaner Loop&lt;/b&gt;&lt;br/&gt;&lt;span style=&#39;font-size:10px;&#39;&gt;Runs continuously in background. Wakes every 500ms to sweep and purge.&lt;/span&gt;" vertex="1">
+          <mxGeometry height="45" width="530" x="15" y="35" as="geometry" />
+        </mxCell>
+        <mxCell id="step_1" parent="zone_reaper" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;align=left;spacingLeft=10;" value="&lt;b&gt;PHASE 1: ACQUIRE THREAD-SAFE LOCK&lt;/b&gt;&lt;br/&gt;&lt;span style=&#39;font-size:10px;&#39;&gt;Locks the model tracking list to synchronize with ongoing inference requests.&lt;/span&gt;" vertex="1">
+          <mxGeometry height="45" width="530" x="15" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="step_2" parent="zone_reaper" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;align=left;spacingLeft=10;" value="&lt;b&gt;PHASE 2: CALCULATE ELAPSED IDLE TIME&lt;/b&gt;&lt;br/&gt;&lt;span style=&#39;font-size:10px;&#39;&gt;Compares current time against each model&#39;s last used timestamp.&lt;br/&gt;Identifies models exceeding their maximum allowed idle window (TTL).&lt;/span&gt;" vertex="1">
+          <mxGeometry height="50" width="530" x="15" y="141" as="geometry" />
+        </mxCell>
+        <mxCell id="step_3" parent="zone_reaper" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;fontColor=#000000;align=left;spacingLeft=10;" value="&lt;b&gt;PHASE 3: EXECUTE EVICTION &amp;amp; FREE MEMORY&lt;/b&gt;&lt;br/&gt;&lt;span style=&#39;font-size:10px;&#39;&gt;Calls agent unloader, releases neural net weights, and decrements arena RAM.&lt;br/&gt;Active models (state = Busy) are completely protected and bypassed.&lt;/span&gt;" vertex="1">
+          <mxGeometry height="50" width="530" x="15" y="199" as="geometry" />
+        </mxCell>
+        <mxCell id="step_4" parent="zone_reaper" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;align=left;spacingLeft=10;" value="&lt;b&gt;PHASE 4: COMPACT TRACKING LIST&lt;/b&gt;&lt;br/&gt;&lt;span style=&#39;font-size:10px;&#39;&gt;Removes all marked records from memory list in a single pass.&lt;br/&gt;Frees container overhead and maintains minimal list footprint.&lt;/span&gt;" vertex="1">
+          <mxGeometry height="50" width="530" x="15" y="257" as="geometry" />
+        </mxCell>
+        <mxCell id="step_5" parent="zone_reaper" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;strokeWidth=2;fontColor=#ffffff;align=left;spacingLeft=10;" value="&lt;b&gt;PHASE 5: SYSTEM-WIDE MEMORY WATCHDOG CIRCUIT-BREAKER&lt;/b&gt;&lt;br/&gt;&lt;span style=&#39;font-size:10px;&#39;&gt;Samples overall system memory every cycle:&lt;br/&gt;• Free RAM &amp;gt; 3.0 GB: Standard 10s warm caching enabled&lt;br/&gt;• Free RAM &amp;lt; 1.5 GB: Emergency mode drops TTL to 0s, purging all idle models instantly.&lt;/span&gt;" vertex="1">
+          <mxGeometry height="65" width="530" x="15" y="315" as="geometry" />
+        </mxCell>
+        <mxCell id="node_lifecycle" parent="zone_reaper" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;align=left;spacingLeft=12;" value="&lt;b style=&#39;font-size:11px;&#39;&gt;CLEANER THREAD DECISION WORKFLOW&lt;/b&gt;&lt;br/&gt;&lt;div style=&#39;font-size:10px; line-height:1.6; margin-top:4px;&#39;&gt;1. &lt;b&gt;Wakeup:&lt;/b&gt; Thread awakens after 500ms sleep interval&lt;br/&gt;2. &lt;b&gt;Lock:&lt;/b&gt; Acquires mutex to prevent race conditions with worker threads&lt;br/&gt;3. &lt;b&gt;Scan:&lt;/b&gt; Inspects each entry: is it Busy? If YES -&amp;gt; Skip&lt;br/&gt;4. &lt;b&gt;Evaluate:&lt;/b&gt; Has (Now - LastUsed) &amp;gt;= TTL? If NO -&amp;gt; Keep Warm&lt;br/&gt;5. &lt;b&gt;Evict:&lt;/b&gt; If YES -&amp;gt; Unload weights, reclaim RAM, set Evicted flag&lt;br/&gt;6. &lt;b&gt;Prune:&lt;/b&gt; Shrink tracking list to eliminate evicted slots&lt;br/&gt;7. &lt;b&gt;Release:&lt;/b&gt; Unlock mutex and return to sleep&lt;/div&gt;" vertex="1">
+          <mxGeometry height="155" width="530" x="15" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="node_guarantee" parent="zone_reaper" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;align=left;spacingLeft=12;" value="&lt;b style=&#39;font-size:11px;&#39;&gt;HARDWARE OPERATIONAL GUARANTEE&lt;/b&gt;&lt;br/&gt;&lt;span style=&#39;font-size:10px;&#39;&gt;• Zero Swap Thrashing: Idle models leave physical RAM within 10 seconds.&lt;br/&gt;• 1,000 Agents on 16GB: System never runs out of memory because inactive models cost 0 bytes.&lt;br/&gt;• Immediate Response: Active agents keep warm cache for rapid multi-step workflows.&lt;/span&gt;" vertex="1">
+          <mxGeometry height="75" width="530" x="15" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_sweep" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;fontSize=10;align=center;" value="&lt;b&gt;500ms Sweep&lt;/b&gt;&lt;br/&gt;&amp;lt;-------" vertex="1">
+          <mxGeometry height="35" width="110" x="625" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_evict" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#000000;strokeWidth=1.5;dashed=1;fontColor=#000000;fontSize=10;align=center;" value="&lt;b&gt;EVICT (140 MB)&lt;/b&gt;&lt;br/&gt;&amp;lt;-------" vertex="1">
+          <mxGeometry height="35" width="110" x="625" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow_sweep_1" edge="1" parent="1" source="node_thread_control" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#000000;strokeWidth=1.5;" target="lbl_sweep">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow_sweep_2" edge="1" parent="1" source="lbl_sweep" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#000000;strokeWidth=1.5;" target="slot_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow_evict_1" edge="1" parent="1" source="step_3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#000000;strokeWidth=1.5;dashed=1;" target="lbl_evict">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow_evict_2" edge="1" parent="1" source="lbl_evict" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#000000;strokeWidth=1.5;dashed=1;" target="slot_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4uIZEFDgGE64c1_Woi-d-1" parent="1" style="shape=note;size=20;whiteSpace=wrap;html=1;" value="to clear this stage&amp;nbsp;&lt;br&gt;it&#39;s like garbage&amp;nbsp;&lt;br&gt;collectors&lt;br&gt;in programing language" vertex="1">
+          <mxGeometry height="100" width="100" x="1490" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="4uIZEFDgGE64c1_Woi-d-3" edge="1" parent="1" source="zone_reaper" style="endArrow=none;html=1;rounded=0;entryX=0.028;entryY=0.19;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0;exitDx=0;exitDy=0;" target="4uIZEFDgGE64c1_Woi-d-1" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1170" y="260" as="sourcePoint" />
+            <mxPoint x="1330" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

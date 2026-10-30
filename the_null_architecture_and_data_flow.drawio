@@ -1,0 +1,258 @@
+<mxfile host="app.diagrams.net" modified="2026-10-27T08:28:00.000Z" agent="Antigravity C++ The Null Architecture" version="24.0.0">
+  <diagram id="TheNullPureCppDataFlowBW" name="THE NULL - 100% From-Scratch C++ Architecture">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1200" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- TITLE BLOCK (PURE C++ NATIVE, ZERO DEPENDENCY / ZERO OLLAMA) -->
+        <mxCell id="title" value="&lt;b style='font-size:22px; color:#000000; letter-spacing:1px;'&gt;THE NULL — 100% FROM-SCRATCH C++ ARCHITECTURE&lt;/b&gt;&lt;br/&gt;&lt;span style='color:#333333; font-size:12px;'&gt;Zero Ollama • Zero Daemons • Standalone Binary: Native C++ LLM Engine + 1,000 Fractional Heterogeneous Specialists&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;align=center;" vertex="1" parent="1">
+          <mxGeometry x="400" y="30" width="1000" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- ZONE 1: USER / COMMAND INTERFACE -->
+        <mxCell id="zone_user" value="&lt;b style='color:#000000;'&gt;1. USER &amp;amp; INTERFACE TIER&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;fontColor=#000000;startSize=28;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="130" width="300" height="990" as="geometry" />
+        </mxCell>
+
+        <mxCell id="node_user" value="&lt;b style='color:#000000;'&gt;USER / CREATOR&lt;/b&gt;&lt;br/&gt;&lt;span style='color:#222222; font-size:11px;'&gt;Issues single high-level command:&lt;br/&gt;&lt;i&gt;&quot;Build autonomous game with vision object tracking and C++ logic&quot;&lt;/i&gt;&lt;/span&gt;" style="shape=actor;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;fontColor=#000000;" vertex="1" parent="zone_user">
+          <mxGeometry x="90" y="50" width="120" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="node_cli" value="&lt;b style='color:#000000;'&gt;THE NULL CLI &amp;amp; REPL&lt;/b&gt;&lt;br/&gt;&lt;span style='color:#333333; font-size:11px;'&gt;Native C++ interactive terminal&lt;br/&gt;Direct binary invocation (No background daemon)&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;" vertex="1" parent="zone_user">
+          <mxGeometry x="50" y="210" width="200" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="node_output_box" value="&lt;b style='color:#000000;'&gt;FINAL DELIVERABLE ARTIFACTS&lt;/b&gt;&lt;br/&gt;&lt;span style='color:#222222; font-size:11px;'&gt;• Compiled Binaries &amp;amp; Source Code&lt;br/&gt;• YOLO Detection Logs &amp;amp; Bounding Boxes&lt;br/&gt;• System Schemas &amp;amp; QA Reports&lt;br/&gt;• Packaged Autonomous App&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#000000;strokeWidth=2;fontColor=#000000;align=left;spacingLeft=15;" vertex="1" parent="zone_user">
+          <mxGeometry x="30" y="800" width="240" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- ZONE 2: COMMANDER CORE (EMBEDDED NATIVE C++ LLM ENGINE) -->
+        <mxCell id="zone_commander" value="&lt;b style='color:#000000;'&gt;2. COMMANDER — NATIVE C++ CENTRAL LLM (FROM SCRATCH)&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;fontColor=#000000;startSize=28;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="130" width="460" height="990" as="geometry" />
+        </mxCell>
+
+        <mxCell id="node_commander_core" value="&lt;b style='color:#ffffff; font-size:14px;'&gt;COMMANDER CONTROLLER (C++)&lt;/b&gt;&lt;br/&gt;&lt;span style='color:#e5e5e5; font-size:11px;'&gt;Central AI Workforce Director&lt;br/&gt;Manages Task DAGs, Context Windows &amp;amp; Reasoning Loop&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;strokeWidth=2;fontColor=#ffffff;" vertex="1" parent="zone_commander">
+          <mxGeometry x="50" y="50" width="360" height="75" as="geometry" />
+        </mxCell>
+
+        <mxCell id="node_embedded_llm" value="&lt;b style='color:#000000; font-size:13px;'&gt;EMBEDDED C++ INFERENCE ENGINE (ZERO OLLAMA)&lt;/b&gt;&lt;br/&gt;&lt;span style='color:#222222; font-size:11px;'&gt;&lt;b&gt;In-Process GGUF Transformer Runtime&lt;/b&gt;&lt;br/&gt;• Native C++ Tokenizer (BPE / SentencePiece)&lt;br/&gt;• Pure C++ SIMD MatMul, RMSNorm, RoPE, Softmax&lt;br/&gt;• Zero network overhead • Direct mmap memory access&lt;br/&gt;• Standalone: runs directly inside &lt;i&gt;the-null&lt;/i&gt; process&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#000000;strokeWidth=2;fontColor=#000000;align=left;spacingLeft=15;" vertex="1" parent="zone_commander">
+          <mxGeometry x="50" y="155" width="360" height="135" as="geometry" />
+        </mxCell>
+
+        <mxCell id="node_decomposer" value="&lt;b style='color:#000000;'&gt;AUTONOMOUS TASK DECOMPOSER (DAG)&lt;/b&gt;&lt;br/&gt;&lt;span style='color:#222222; font-size:11px;'&gt;Synthesizes structured subtask graph:&lt;br/&gt;&lt;b&gt;Step 1:&lt;/b&gt; Div 01 (YOLO Image Perception &amp;amp; BBox Extraction)&lt;br/&gt;&lt;b&gt;Step 2:&lt;/b&gt; Div 02 (Compile &amp;amp; Sandbox C++ Logic)&lt;br/&gt;&lt;b&gt;Step 3:&lt;/b&gt; Div 06 (Static Buffer &amp;amp; Security Audit)&lt;br/&gt;&lt;b&gt;Step 4:&lt;/b&gt; Div 10 (Assemble Digital Product)&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;align=left;spacingLeft=15;" vertex="1" parent="zone_commander">
+          <mxGeometry x="50" y="320" width="360" height="145" as="geometry" />
+        </mxCell>
+
+        <mxCell id="node_feedback_eval" value="&lt;b style='color:#000000;'&gt;SELF-HEALING &amp;amp; VERIFICATION LOOP&lt;/b&gt;&lt;br/&gt;&lt;span style='color:#222222; font-size:11px;'&gt;Checks agent execution output &amp;amp; exit codes.&lt;br/&gt;If compiler errors or low detection scores occur,&lt;br/&gt;Commander feeds error back into LLM context to correct.&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;" vertex="1" parent="zone_commander">
+          <mxGeometry x="50" y="500" width="360" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="node_synth_director" value="&lt;b style='color:#000000; font-size:13px;'&gt;SYNTHESIS &amp;amp; AGGREGATION DIRECTOR&lt;/b&gt;&lt;br/&gt;&lt;span style='color:#222222; font-size:11px;'&gt;Merges vision tags, compiled binaries,&lt;br/&gt;data tables, and documentation into the final build&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;fontColor=#000000;" vertex="1" parent="zone_commander">
+          <mxGeometry x="50" y="690" width="360" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- ZONE 3: RUNTIME & SCHEDULER -->
+        <mxCell id="zone_runtime" value="&lt;b style='color:#000000;'&gt;3. FRACTIONAL C++ RUNTIME &amp;amp; SCHEDULER&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;fontColor=#000000;startSize=28;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="900" y="130" width="400" height="990" as="geometry" />
+        </mxCell>
+
+        <mxCell id="node_registry" value="&lt;b style='color:#000000; font-size:13px;'&gt;DYNAMIC AGENT REGISTRY&lt;/b&gt;&lt;br/&gt;&lt;span style='color:#222222; font-size:11px;'&gt;10 Divisions | 1,000 Virtual Agent Slots&lt;br/&gt;&lt;i&gt;Zero-RAM inactive standby&lt;/i&gt;&lt;br/&gt;Lookups by Capability, Division ID, or Specialty&lt;/span&gt;" style="shape=module;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;fontColor=#000000;" vertex="1" parent="zone_runtime">
+          <mxGeometry x="40" y="60" width="320" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="node_scheduler" value="&lt;b style='color:#000000; font-size:13px;'&gt;FRACTIONAL SCHEDULER &amp;amp; MEMORY GUARD&lt;/b&gt;&lt;br/&gt;&lt;span style='color:#222222; font-size:11px;'&gt;&lt;b&gt;Bounded C++ ThreadPool (2–4 Active Slots)&lt;/b&gt;&lt;br/&gt;• Strictly prevents RAM spikes on 16GB system&lt;br/&gt;• Non-blocking std::future&amp;lt;AgentResult&amp;gt; promises&lt;br/&gt;• Lazy model loading: loads weights only when active&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#000000;strokeWidth=2;fontColor=#000000;" vertex="1" parent="zone_runtime">
+          <mxGeometry x="40" y="240" width="320" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="node_bus" value="&lt;b style='color:#000000; font-size:13px;'&gt;UNIFIED RESULT &amp;amp; TELEMETRY BUS&lt;/b&gt;&lt;br/&gt;&lt;span style='color:#222222; font-size:11px;'&gt;Standardized AgentResult (JSON)&lt;br/&gt;Execution time (ms), status, payloads, errors&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;" vertex="1" parent="zone_runtime">
+          <mxGeometry x="40" y="500" width="320" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- ZONE 4: THE 10 DIVISIONS & SPECIALIZED AGENTS -->
+        <mxCell id="zone_divisions" value="&lt;b style='color:#000000;'&gt;4. HETEROGENEOUS SPECIALISTS (10 DIVISIONS)&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;fontColor=#000000;startSize=28;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="130" width="420" height="990" as="geometry" />
+        </mxCell>
+
+        <!-- DIV 01 -->
+        <mxCell id="node_agent_yolo" value="&lt;b style='color:#000000;'&gt;DIV 01: VISION &amp;amp; PERCEPTION&lt;/b&gt;&lt;br/&gt;&lt;span style='color:#222222; font-size:11px;'&gt;&lt;b&gt;Native C++ YOLO ONNX (OpenCV 5 DNN)&lt;/b&gt;&lt;br/&gt;Real-time object detection &amp;amp; bounding boxes&lt;br/&gt;&lt;i&gt;CPU SIMD inference in &amp;lt;40ms • Zero Python runtime&lt;/i&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;align=left;spacingLeft=12;" vertex="1" parent="zone_divisions">
+          <mxGeometry x="25" y="50" width="370" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- DIV 02 -->
+        <mxCell id="node_agent_code" value="&lt;b style='color:#000000;'&gt;DIV 02: SOFTWARE &amp;amp; EXECUTION&lt;/b&gt;&lt;br/&gt;&lt;span style='color:#222222; font-size:11px;'&gt;&lt;b&gt;C++ Compiler &amp;amp; POSIX Sandboxed Runner&lt;/b&gt;&lt;br/&gt;Compiles C++, executes tests, captures stdout/stderr&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;align=left;spacingLeft=12;" vertex="1" parent="zone_divisions">
+          <mxGeometry x="25" y="150" width="370" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- DIV 03 -->
+        <mxCell id="node_agent_arch" value="&lt;b style='color:#000000;'&gt;DIV 03: ARCHITECTURE &amp;amp; SCHEMAS&lt;/b&gt;&lt;br/&gt;&lt;span style='color:#222222; font-size:11px;'&gt;Data models, DB schemas, component interfaces&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;align=left;spacingLeft=12;" vertex="1" parent="zone_divisions">
+          <mxGeometry x="25" y="245" width="370" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- DIV 04 -->
+        <mxCell id="node_agent_data" value="&lt;b style='color:#000000;'&gt;DIV 04: DATA &amp;amp; ANALYTICS&lt;/b&gt;&lt;br/&gt;&lt;span style='color:#222222; font-size:11px;'&gt;&lt;b&gt;Statistical &amp;amp; Tabular Engine (C++)&lt;/b&gt;&lt;br/&gt;Data aggregation, distributions, matrix calculations&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;align=left;spacingLeft=12;" vertex="1" parent="zone_divisions">
+          <mxGeometry x="25" y="330" width="370" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- DIV 05 -->
+        <mxCell id="node_agent_nlp" value="&lt;b style='color:#000000;'&gt;DIV 05: NLP &amp;amp; TEXT PARSING&lt;/b&gt;&lt;br/&gt;&lt;span style='color:#222222; font-size:11px;'&gt;C++ Tokenizer, AST regex, pattern extractors&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;align=left;spacingLeft=12;" vertex="1" parent="zone_divisions">
+          <mxGeometry x="25" y="420" width="370" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- DIV 06 -->
+        <mxCell id="node_agent_sec" value="&lt;b style='color:#000000;'&gt;DIV 06: SECURITY &amp;amp; QA AUDIT&lt;/b&gt;&lt;br/&gt;&lt;span style='color:#222222; font-size:11px;'&gt;&lt;b&gt;Static Analysis &amp;amp; Vulnerability Scanner&lt;/b&gt;&lt;br/&gt;Buffer safety, secrets detection, logic bounds&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;align=left;spacingLeft=12;" vertex="1" parent="zone_divisions">
+          <mxGeometry x="25" y="505" width="370" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- DIV 07 to 09 -->
+        <mxCell id="node_agent_others" value="&lt;b style='color:#000000;'&gt;DIV 07–09: AUDIO, WEB, MATH SPECIALISTS&lt;/b&gt;&lt;br/&gt;&lt;span style='color:#222222; font-size:11px;'&gt;• Div 07: Audio wave &amp;amp; Speech (Whisper ONNX)&lt;br/&gt;• Div 08: Native socket / HTTP endpoints&lt;br/&gt;• Div 09: Math &amp;amp; Numerical optimization&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;align=left;spacingLeft=12;" vertex="1" parent="zone_divisions">
+          <mxGeometry x="25" y="595" width="370" height="85" as="geometry" />
+        </mxCell>
+
+        <!-- DIV 10 -->
+        <mxCell id="node_agent_synth" value="&lt;b style='color:#000000;'&gt;DIV 10: SYNTHESIS &amp;amp; PACKAGING&lt;/b&gt;&lt;br/&gt;&lt;span style='color:#222222; font-size:11px;'&gt;&lt;b&gt;Artifact Bundler &amp;amp; Deliverable Packager&lt;/b&gt;&lt;br/&gt;Generates finished release folder, tarball &amp;amp; README&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#000000;strokeWidth=2;fontColor=#000000;align=left;spacingLeft=12;" vertex="1" parent="zone_divisions">
+          <mxGeometry x="25" y="700" width="370" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- VIRTUAL SLOTS POOL -->
+        <mxCell id="node_virtual_pool" value="&lt;b style='color:#000000;'&gt;+ 990 Virtual Sub-Specialist Slots (100 per Division)&lt;/b&gt;&lt;br/&gt;&lt;span style='color:#555555; font-size:10px;'&gt;Zero inactive RAM • Instantiated on-demand by C++ Factory&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontColor=#000000;" vertex="1" parent="zone_divisions">
+          <mxGeometry x="25" y="795" width="370" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- DATA FLOW CONNECTORS & LABELS (CLEAN BLACK & WHITE) -->
+
+        <!-- 1. User -> CLI -->
+        <mxCell id="flow_1" value="1. User Goal" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;" edge="1" parent="1" source="node_user" target="node_cli">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- 2. CLI -> Commander Controller -->
+        <mxCell id="flow_2" value="2. Raw Directive" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;" edge="1" parent="1" source="node_cli" target="node_commander_core">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="375" />
+              <mxPoint x="380" y="217" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 3. Controller <-> In-Process LLM Engine -->
+        <mxCell id="flow_3" value="3. In-Process Token Pass (Zero Network)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;" edge="1" parent="1" source="node_commander_core" target="node_embedded_llm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- 4. In-Process LLM -> Decomposer -->
+        <mxCell id="flow_4" value="4. Generated Execution Plan (DAG)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;" edge="1" parent="1" source="node_embedded_llm" target="node_decomposer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- 5. Decomposer -> Registry Query -->
+        <mxCell id="flow_5" value="5. Resolve Agents &amp;amp; Capabilities" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;" edge="1" parent="1" source="node_decomposer" target="node_registry">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="880" y="525" />
+              <mxPoint x="880" y="245" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 6. Registry -> Scheduler -->
+        <mxCell id="flow_6" value="6. Enqueue Agent Tasks" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;" edge="1" parent="1" source="node_registry" target="node_scheduler">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- 7. Scheduler -> Division Agents (Fractional Dispatch) -->
+        <mxCell id="flow_7a" value="7a. Dispatch Vision (YOLO)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;" edge="1" parent="1" source="node_scheduler" target="node_agent_yolo">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1290" y="430" />
+              <mxPoint x="1290" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="flow_7b" value="7b. Dispatch Code Task" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;" edge="1" parent="1" source="node_scheduler" target="node_agent_code">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1300" y="430" />
+              <mxPoint x="1300" y="318" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="flow_7c" value="7c. Dispatch Security Audit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;" edge="1" parent="1" source="node_scheduler" target="node_agent_sec">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1310" y="430" />
+              <mxPoint x="1310" y="670" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 8. Agents -> Result Bus -->
+        <mxCell id="flow_8" value="8. Standardized AgentResult JSON (Direct Memory Return)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#000000;strokeWidth=1.5;dashed=1;fontColor=#000000;" edge="1" parent="1" source="node_agent_yolo" target="node_bus">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1320" y="230" />
+              <mxPoint x="1320" y="685" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="flow_8b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#000000;strokeWidth=1.5;dashed=1;" edge="1" parent="1" source="node_agent_code" target="node_bus">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1320" y="328" />
+              <mxPoint x="1320" y="685" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="flow_8c" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#000000;strokeWidth=1.5;dashed=1;" edge="1" parent="1" source="node_agent_sec" target="node_bus">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1320" y="670" />
+              <mxPoint x="1320" y="685" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 9. Bus -> Feedback Loop -->
+        <mxCell id="flow_9" value="9. Telemetry &amp; Execution Output" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;" edge="1" parent="1" source="node_bus" target="node_feedback_eval">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="880" y="685" />
+              <mxPoint x="880" y="695" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 10. Eval -> Synth Engine -->
+        <mxCell id="flow_10" value="10. Verified Step Deliverables" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#000000;strokeWidth=1.5;fontColor=#000000;" edge="1" parent="1" source="node_feedback_eval" target="node_synth_director">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- 11. Synth Director -> Deliverable Box -->
+        <mxCell id="flow_11" value="11. Assembled Output" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#000000;strokeWidth=2;fontColor=#000000;" edge="1" parent="1" source="node_synth_director" target="node_output_box">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="430" y="875" />
+              <mxPoint x="430" y="1000" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 12. Deliverable -> User -->
+        <mxCell id="flow_12" value="12. Return Final Product" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#000000;strokeWidth=1.5;dashed=1;fontColor=#000000;" edge="1" parent="1" source="node_output_box" target="node_user">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="30" y="980" />
+              <mxPoint x="30" y="235" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
