@@ -84,56 +84,102 @@ null-project/
 
 ---
 
-## 🚀 Quick Start
+---
 
-### 1. Prerequisites
-- **Compiler**: GCC 9+ / Clang 10+ (supporting C++17)
-- **Build Tools**: CMake, Make
-- **Libraries**: OpenMP (optional for CPU parallelization)
+## 💻 System & Hardware Requirements
 
-### 2. Clone Repository & Submodules
+| Requirement | Minimum Specification | Recommended Specification |
+| :--- | :--- | :--- |
+| **Operating System** | Linux (Arch, Ubuntu, Debian, Fedora), macOS 12+, Windows 10/11 (64-bit) | Linux (x86_64 or aarch64) or macOS (Apple Silicon M-series) |
+| **CPU Architecture** | x86_64 with AVX2/FMA or ARM64 (ARMv8.2-A / NEON) | x86_64 with AVX-512 or Apple Silicon (M1/M2/M3/M4) |
+| **CPU Cores** | 2 cores (4 threads) | 6 to 12+ physical cores |
+| **RAM (1.5B GGUF)** | **2 GB free RAM** | **4 GB RAM** |
+| **RAM (7B+ GGUF)** | **8 GB free RAM** | **16 GB RAM** |
+| **Disk Storage** | 2.5 GB for code & build artifacts | 10+ GB to store multiple GGUF models |
+| **Compilers & Tools**| C++17 compiler (GCC 9+, Clang 10+, Apple Clang 12+, MSVC 2022), CMake 3.16+, Git |
+
+> 📖 **Looking for in-depth platform details, GPU/CUDA acceleration, or troubleshooting?**  
+> Check the full [Cross-Platform Compilation & Requirements Guide](docs/COMPILATION_GUIDE.md).
+
+---
+
+## 🚀 Quick Start & Compilation
+
+### Step 1: Clone Repository & Submodules
 ```bash
-git clone --recurse-submodules https://github.com/your-username/null-project.git
-cd null-project
+git clone --recurse-submodules https://github.com/Ahmedfargh/ai-cpp.git
+cd ai-cpp
 ```
-
 If already cloned without submodules:
 ```bash
 git submodule update --init --recursive
 ```
 
-### 3. Build GGML & llama.cpp Shared Libraries
+---
+
+### Step 2: Build by Operating System
+
+#### 🐧 Linux (Arch / Ubuntu / Debian / Fedora)
 ```bash
-# Build GGML
-cmake -B ggml/build -S ggml -DGGML_BUILD_EXAMPLES=OFF -DGGML_BUILD_TESTS=OFF
+# 1. Build GGML and llama.cpp shared libraries
+cmake -B ggml/build -S ggml -DCMAKE_BUILD_TYPE=Release -DGGML_BUILD_EXAMPLES=OFF -DGGML_BUILD_TESTS=OFF
 cmake --build ggml/build --config Release -j$(nproc)
 
-# Build llama.cpp
-cmake -B llama.cpp/build -S llama.cpp -DBUILD_SHARED_LIBS=ON -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_BUILD_TESTS=OFF
+cmake -B llama.cpp/build -S llama.cpp -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_BUILD_TESTS=OFF
 cmake --build llama.cpp/build --config Release -j$(nproc)
-```
 
-### 4. Acquire Commander Model
-Download your preferred quantized GGUF model into `models/commanders/`:
-```bash
-# Example: Qwen2.5 1.5B Instruct (GGUF)
-mkdir -p models/commanders
-# Place your .gguf file into models/commanders/
-```
-
-### 5. Compile THE NULL Commander
-```bash
+# 2. Build THE NULL Commander
 make
-```
 
-### 6. Run Interactive Commander
-```bash
+# 3. Run
 make run
-```
-Or directly:
-```bash
+# Or directly:
 LD_LIBRARY_PATH=./ggml/build/src:./llama.cpp/build/bin ./qwen_chat
 ```
+
+#### 🍎 macOS (Apple Silicon M-Series & Intel)
+```bash
+# 1. Build GGML and llama.cpp (with Apple Metal acceleration enabled)
+cmake -B ggml/build -S ggml -DCMAKE_BUILD_TYPE=Release -DGGML_BUILD_EXAMPLES=OFF -DGGML_BUILD_TESTS=OFF
+cmake --build ggml/build --config Release -j$(sysctl -n hw.ncpu)
+
+cmake -B llama.cpp/build -S llama.cpp -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON -DGGML_METAL=ON -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_BUILD_TESTS=OFF
+cmake --build llama.cpp/build --config Release -j$(sysctl -n hw.ncpu)
+
+# 2. Compile qwen_chat with clang++
+clang++ -std=c++17 -O3 chat.cpp -I include -I ggml/include -I ggml/ggml/include -I llama.cpp/include -I llama.cpp/ggml/include -L ggml/build/src -L llama.cpp/build/bin -lllama -lggml -lggml-base -lggml-cpu -o qwen_chat
+
+# 3. Run
+DYLD_LIBRARY_PATH=./ggml/build/src:./llama.cpp/build/bin ./qwen_chat
+```
+
+#### 🪟 Windows (Visual Studio 2022 / MSVC / PowerShell)
+Open the **x64 Native Tools Command Prompt for VS 2022**:
+```cmd
+REM 1. Build GGML and llama.cpp DLLs
+cmake -B ggml/build -S ggml -G "Visual Studio 17 2022" -A x64 -DGGML_BUILD_EXAMPLES=OFF -DGGML_BUILD_TESTS=OFF
+cmake --build ggml/build --config Release --parallel %NUMBER_OF_PROCESSORS%
+
+cmake -B llama.cpp/build -S llama.cpp -G "Visual Studio 17 2022" -A x64 -DBUILD_SHARED_LIBS=ON -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_BUILD_TESTS=OFF
+cmake --build llama.cpp/build --config Release --parallel %NUMBER_OF_PROCESSORS%
+
+REM 2. Compile qwen_chat.exe with MSVC
+cl /std:c++17 /O2 /EHsc /utf-8 chat.cpp /I include /I ggml\include /I ggml\ggml\include /I llama.cpp\include /I llama.cpp\ggml\include /link /LIBPATH:ggml\build\src\Release /LIBPATH:llama.cpp\build\bin\Release llama.lib ggml.lib ggml-base.lib ggml-cpu.lib /out:qwen_chat.exe
+
+REM 3. Copy DLLs and Run
+copy ggml\build\src\Release\*.dll .
+copy llama.cpp\build\bin\Release\*.dll .
+qwen_chat.exe
+```
+
+---
+
+### Step 3: Model Weights Placement
+Place any compatible GGUF quantized model (e.g. Qwen2.5 1.5B Instruct) inside the `models/commanders/` folder:
+```bash
+models/commanders/josiefied-qwen2.5-1.5b-instruct-abliterated-v1.IQ4_XS.gguf
+```
+*(The model path can be customized on line 22 of [chat.cpp](chat.cpp)).*
 
 ---
 
